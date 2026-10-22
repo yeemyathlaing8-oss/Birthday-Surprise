@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<title>မင်းအတွက် Surprise လေး ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
+:root{--pink:#f7b8cf;--rose:#b62e61;--cream:#fff8f4;--ink:#53283a}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Padauk',system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at top,#fff 0,#fff0f5 42%,#fce1e9 100%);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(#d85c89 1px,transparent 1px);background-size:23px 23px}
+.wrap{width:min(720px,100%);margin:auto;padding:22px 16px 48px;position:relative}
+.top{text-align:center;padding:24px 10px 16px}
+.kicker{letter-spacing:2px;color:#a34a6b;font-size:.82rem}
+h1{font-size:clamp(1.7rem,6vw,2.7rem);line-height:1.45;margin:8px 0;color:#9d2854}
+.sub{font-size:1rem;line-height:1.9;max-width:540px;margin:0 auto;color:#75475a}
+.card{background:rgba(255,255,255,.88);border:1px solid #f5c9d8;border-radius:25px;padding:24px 20px;box-shadow:0 16px 42px #a3335e15;backdrop-filter:blur(8px)}
+.heart{font-size:3rem;display:block;text-align:center;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.progress{height:7px;background:#f7dbe5;border-radius:99px;overflow:hidden;margin:18px 0 22px}
+.bar{height:100%;width:14.28%;background:linear-gradient(90deg,#ef86ad,#a82b5c);transition:width .4s;border-radius:99px}
+.stepcount{text-align:center;color:#a34a6b;font-size:.9rem}
+h2{text-align:center;color:#9d2854;font-size:1.45rem;margin:10px 0}
+.message{text-align:center;white-space:pre-line;line-height:2;font-size:1.06rem;margin:14px 0 22px}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+button{font:inherit;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;transition:transform .15s,filter .15s}
+button:active{transform:scale(.97)}
+.primary{color:white;background:linear-gradient(135deg,#d84d82,#a52859);box-shadow:0 7px 18px #b62e6133}
+.secondary{background:#fff0f5;color:#9d2854;border:1px solid #f2bfd0}
+.music{position:fixed;right:12px;top:12px;z-index:5;background:#fff;color:#9d2854;border:1px solid #f2bfd0;box-shadow:0 5px 20px #a3335e18;padding:9px 13px;font-size:.88rem}
+.footer{text-align:center;color:#a56b80;font-size:.85rem;margin-top:18px}
+.photoarea{border:1px dashed #e6a4bc;background:#fff6f9;border-radius:18px;padding:20px;text-align:center;margin:16px 0}
+.photoarea .emoji{font-size:2.6rem}
+.photoarea p{margin:6px 0;line-height:1.8}
+.dots{display:flex;justify-content:center;gap:7px;margin:14px 0}
+.dot{width:9px;height:9px;border-radius:50%;background:#f0c4d4}
+.dot.active{background:#b62e61;transform:scale(1.25)}
+.end{font-size:1.1rem}
+.heartfloat{position:fixed;bottom:-40px;animation:floatUp 5s linear forwards;pointer-events:none;z-index:8}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(max-width:420px){.card{padding:20px 15px}.message{font-size:1rem}.music{top:8px;right:8px}}
+</style>
+</head>
+<body>
+<button class="music" id="musicBtn" type="button">♫ သီချင်းဖွင့်ရန်</button>
+<main class="wrap">
+  <header class="top">
+    <div class="kicker">A LITTLE SURPRISE, JUST FOR YOU</div>
+    <h1>မွေးနေ့မှာ ပျော်ရွှင်ပါစေ<br>ကိုယ့်အချစ်ဆုံးလေး ❤️</h1>
+    <p class="sub">အဝေးမှာရှိနေပေမယ့် ကိုယ့်နှလုံးသားက မင်းအနားမှာပဲရှိနေတယ်။<br>ဒီလက်ဆောင်လေးကို အဆင့်တစ်ဆင့်ချင်း ဖွင့်ကြည့်နော်။</p>
+  </header>
+  <section class="card" aria-live="polite">
+    <span class="heart" id="bigHeart">💗</span>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="stepcount" id="stepcount">အဆင့် ၁ / ၇</div>
+    <div class="dots" id="dots"></div>
+    <h2 id="title">ပထမဆုံး Surprise လေး</h2>
+    <div class="photoarea" id="visual"><div class="emoji">🎁</div><p>ဒီလက်ဆောင်လေးက<br>မင်းတစ်ယောက်တည်းအတွက်ပါ</p></div>
+    <p class="message" id="message">ဒီနေ့က ကိုယ့်အတွက်လည်း အထူးနေ့လေးပါ။<br>ဘာလို့လဲဆိုတော့ ဒီကမ္ဘာကြီးထဲကို မင်းရောက်လာခဲ့တဲ့နေ့မို့လို့ပါ။</p>
+    <div class="actions">
+      <button class="secondary" id="backBtn" type="button" hidden>← နောက်တစ်ဆင့်ပြန်</button>
+      <button class="primary" id="nextBtn" type="button">နောက် Surprise ကိုဖွင့်မယ် 💌</button>
+    </div>
+  </section>
+  <div class="footer">Made with love, from far away to you 💕</div>
+</main>
+<script>
+const steps=[
+ {title:"ပထမဆုံး Surprise လေး",emoji:"🎁",caption:"ဒီလက်ဆောင်လေးက\\nမင်းတစ်ယောက်တည်းအတွက်ပါ",message:"ဒီနေ့က ကိုယ့်အတွက်လည်း အထူးနေ့လေးပါ။\\nဘာလို့လဲဆိုတော့ ဒီကမ္ဘာကြီးထဲကို မင်းရောက်လာခဲ့တဲ့နေ့မို့လို့ပါ။",heart:"💗",button:"နောက် Surprise ကိုဖွင့်မယ် 💌"},
+ {title:"မင်းရဲ့အပြုံးလေး",emoji:"😊",caption:"ကိုယ်အကြိုက်ဆုံး မြင်ကွင်း",message:"ကိုယ်အကြိုက်ဆုံးအရာတွေထဲမှာ မင်းရဲ့အပြုံးလေးလည်း ပါတယ်။\\nမင်းပြုံးနေတာမြင်ရရင် ကိုယ့်နေ့တစ်နေ့လုံး ပိုလှသွားတယ်။\\nဒီနေ့လည်း အများကြီးပြုံးနိုင်ပါစေနော်။",heart:"🌷",button:"နောက်တစ်ခုကြည့်မယ် 💞"},
+ {title:"ကိုယ်တို့ရဲ့ အမှတ်တရ",emoji:"🫶",caption:"အတူဖြတ်သန်းခဲ့တဲ့ အချိန်တိုင်းအတွက်",message:"ကိုယ်တို့အတူရှိခဲ့တဲ့ ပျော်ရွှင်စရာနေ့တွေ၊\\nလွမ်းခဲ့ရတဲ့အချိန်တွေ၊ စိတ်ဆိုးစိတ်ကောက်ခဲ့တာတွေတောင်\\nအခုတော့ ကိုယ့်အတွက် တန်ဖိုးရှိတဲ့ အမှတ်တရတွေ ဖြစ်နေပြီ။",heart:"🩷",button:"နောက်ထပ်ဖွင့်ကြည့်မယ် 🌹"},
+ {title:"ကိုယ်မင်းကို ချစ်ရတဲ့အကြောင်း",emoji:"💌",caption:"အကြောင်းပြချက်တွေ အများကြီးရှိတယ်",message:"မင်းရဲ့စိတ်ထားလေးကို ချစ်တယ်။\\nမင်းရဲ့အပြုံးလေးကို ချစ်တယ်။\\nကိုယ့်ကို နားလည်ပေးတဲ့ မင်းကို ချစ်တယ်။\\nအရေးကြီးဆုံးကတော့ မင်းဟာ မင်းဖြစ်နေလို့ကို ချစ်တာပါ။",heart:"💘",button:"မင်းအတွက် ဆုတောင်းလေး ✨"},
+ {title:"မင်းအတွက် ကိုယ့်ဆုတောင်း",emoji:"🕯️",caption:"ဒီနေ့နဲ့ နေ့ရက်တိုင်းအတွက်",message:"မင်းကျန်းမာပျော်ရွှင်ပါစေ။\\nမင်းရဲ့အိပ်မက်တွေ တစ်ခုချင်းစီ ပြည့်ဝလာပါစေ။\\nစိတ်ပင်ပန်းတဲ့နေ့တွေမှာလည်း အားတင်းနိုင်ပါစေ။\\nမင်းကိုယ်မင်း တန်ဖိုးထားပြီး ချစ်တတ်ပါစေနော်။",heart:"🌟",button:"ကိုယ့်ကတိလေးကို ဖတ်မယ် 🤍"},
+ {title:"ကိုယ်ပေးချင်တဲ့ ကတိ",emoji:"🤝",caption:"အဝေးမှာရှိလည်း...",message:"အဝေးမှာရှိနေရတာ တစ်ခါတလေ ခက်ခဲတယ်ဆိုတာ ကိုယ်သိတယ်။\\nဒါပေမယ့် မင်းကို နားထောင်ပေးဖို့၊ အားပေးဖို့၊\\nအတူတူအနာဂတ်တစ်ခု တည်ဆောက်ဖို့ ကိုယ်အမြဲကြိုးစားသွားမယ်။\\nအချစ်ဆိုတာ စကားတစ်ခွန်းထက် လုပ်ရပ်တွေနဲ့ သက်သေပြချင်တယ်။",heart:"🤍",button:"နောက်ဆုံး Surprise ကိုဖွင့်မယ် 🎂"},
+ {title:"Happy Birthday, ကိုယ့်အချစ်ဆုံးလေး",emoji:"🎂",caption:"မင်းမွေးနေ့မှာ ကိုယ်ပေးချင်ဆုံးအရာက...",message:"မင်းအတွက် လက်ဆောင်အကြီးကြီး မပေးနိုင်သေးရင်တောင်\\nကိုယ့်ရဲ့အချစ်၊ ဂရုစိုက်မှုနဲ့ အချိန်တွေကို အမြဲပေးချင်တယ်။\\n\\nမွေးနေ့မှစပြီး နေ့ရက်တိုင်း ပျော်ရွှင်ပါစေ။\\nကိုယ်တို့နှစ်ယောက် အတူတူ အသက်ကြီးသွားကြရအောင်နော်။\\n\\nကိုယ်မင်းကို အရမ်းချစ်တယ်။ ❤️",heart:"❤️",button:"အစကနေ ပြန်ကြည့်မယ် ↺"}
+];
+let index=0,audioCtx=null,oscillators=[],musicOn=false;
+const $=id=>document.getElementById(id);
+function render(){
+ const s=steps[index];
+ $("stepcount").textContent=`အဆင့် ${index+1} / ၇`;
+ $("bar").style.width=((index+1)/7*100)+"%";
+ $("title").textContent=s.title;
+ $("visual").innerHTML=`<div class="emoji">${s.emoji}</div><p>${s.caption.replace(/\\n/g,"<br>")}</p>`;
+ $("message").textContent=s.message;
+ $("bigHeart").textContent=s.heart;
+ $("nextBtn").textContent=s.button;
+ $("backBtn").hidden=index===0;
+ $("dots").innerHTML=steps.map((_,i)=>`<span class="dot ${i===index?'active':''}"></span>`).join("");
+ if(index===6) burst();
+}
+$("nextBtn").addEventListener("click",()=>{index=index===6?0:index+1;render();if(index===6)burst();});
+$("backBtn").addEventListener("click",()=>{index=Math.max(0,index-1);render();});
+function burst(){for(let i=0;i<18;i++){const e=document.createElement("span");e.className="heartfloat";e.textContent=["💗","💖","💕","✨","🌸"][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+"vw";e.style.animationDuration=(3+Math.random()*3)+"s";e.style.fontSize=(16+Math.random()*22)+"px";document.body.appendChild(e);setTimeout(()=>e.remove(),6500);}}
+function startMusic(){
+ try{
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  const notes=[261.63,329.63,392.00,329.63,293.66,349.23,440.00,349.23];
+  notes.forEach((f,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type="sine";o.frequency.value=f;g.gain.value=0.0001;o.connect(g);g.connect(audioCtx.destination);o.start();let t=audioCtx.currentTime+i*.42;g.gain.setTargetAtTime(.025,t,.08);g.gain.setTargetAtTime(.0001,t+.32,.08);oscillators.push({o,g});});
+  musicOn=true;$("musicBtn").textContent="♫ သီချင်းပိတ်ရန်";
+  // Repeat the gentle tune by restarting notes periodically.
+  window.musicLoop=setInterval(()=>{if(!musicOn||!audioCtx)return;const ns=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];ns.forEach((f,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type="sine";o.frequency.value=f;g.gain.value=.0001;o.connect(g);g.connect(audioCtx.destination);let t=audioCtx.currentTime+i*.42;g.gain.setTargetAtTime(.022,t,.06);g.gain.setTargetAtTime(.0001,t+.3,.07);o.start(t);o.stop(t+.55);});},3600);
+ }catch(e){$("musicBtn").textContent="♫ သီချင်းမဖွင့်နိုင်ပါ";}
+}
+function stopMusic(){musicOn=false;if(window.musicLoop)clearInterval(window.musicLoop);if(audioCtx){audioCtx.close();audioCtx=null;}oscillators=[];$("musicBtn").textContent="♫ သီချင်းဖွင့်ရန်";}
+$("musicBtn").addEventListener("click",()=>{if(musicOn)stopMusic();else startMusic();});
+render();
+</script>
+</body>
+</html>
